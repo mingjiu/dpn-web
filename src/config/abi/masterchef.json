@@ -352,7 +352,7 @@
         "type": "address"
       }
     ],
-    "name": "pendingCake",
+    "name": "pendingReward",
     "outputs": [
       {
         "internalType": "uint256",
