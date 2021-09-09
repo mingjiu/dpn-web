@@ -5,7 +5,7 @@ import tokens, { mainnetTokens } from 'config/constants/tokens'
 import { PairState, usePairs } from './usePairs'
 import { wrappedCurrency } from '../utils/wrappedCurrency'
 
-const BUSD_MAINNET = mainnetTokens.busd
+const BUSD_MAINNET = mainnetTokens.usdt
 const { wbnb: WBNB } = tokens
 
 /**
