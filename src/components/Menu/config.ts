@@ -7,7 +7,7 @@ const config: (t: ContextApi['t']) => MenuEntry[] = (t) => [
     icon: 'HomeIcon',
     href: '/',
   },
-  
+
   {
     label: t('Farms'),
     icon: 'FarmIcon',
@@ -17,7 +17,7 @@ const config: (t: ContextApi['t']) => MenuEntry[] = (t) => [
     label: t('Pools'),
     icon: 'PoolIcon',
     href: '/pools',
-  }
+  },
 ]
 
 /* {
