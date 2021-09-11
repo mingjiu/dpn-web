@@ -19,7 +19,7 @@ export const swapSectionData: SalesSectionProps = {
     attributes: [
       { src: 'BNB', alt: 'BNB token' },
       { src: 'BTC', alt: 'BTC token' },
-      { src: 'CAKE', alt: 'CAKE token' },
+      { src: 'DPN', alt: 'DPN token' },
     ],
   },
 }
@@ -49,9 +49,9 @@ export const earnSectionData: SalesSectionProps = {
 }
 
 export const cakeSectionData: SalesSectionProps = {
-  headingText: 'CAKE makes our world go round.',
+  headingText: 'DPN makes our world go round.',
   bodyText:
-    'CAKE token is at the heart of the PancakeSwap ecosystem. Buy it, win it, farm it, spend it, stake it... heck, you can even vote with it!',
+    'DPN token is at the heart of the PancakeSwap ecosystem. Buy it, win it, farm it, spend it, stake it... heck, you can even vote with it!',
   reverse: false,
   primaryButton: {
     to: '/swap?outputCurrency=0xdc8C4625A42e6bB7baf6a2eB7E8E4Cf462deED53',
@@ -69,7 +69,7 @@ export const cakeSectionData: SalesSectionProps = {
     attributes: [
       { src: 'bottom-right', alt: 'Small 3d pancake' },
       { src: 'top-right', alt: 'Small 3d pancake' },
-      { src: 'coin', alt: 'CAKE token' },
+      { src: 'coin', alt: 'DPN token' },
       { src: 'top-left', alt: 'Small 3d pancake' },
     ],
   },
