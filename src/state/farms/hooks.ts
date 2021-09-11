@@ -22,7 +22,7 @@ const deserializeFarmUserData = (farm: SerializedFarm): DeserializedFarmUserData
 
 const deserializeFarm = (farm: SerializedFarm): DeserializedFarm => {
   // console.info('deserializeFarm: ', farm)
-  const { lpAddresses, lpSymbol, pid, dual, multiplier, isCommunity, quoteTokenPriceBusd, tokenPriceBusd } = farm
+  const { lpAddresses, lpSymbol, pid, dual, multiplier, isCommunity, quoteTokenPriceUSD, tokenPriceUSD } = farm
 
   return {
     lpAddresses,
@@ -31,8 +31,8 @@ const deserializeFarm = (farm: SerializedFarm): DeserializedFarm => {
     dual,
     multiplier,
     isCommunity,
-    quoteTokenPriceBusd,
-    tokenPriceBusd,
+    quoteTokenPriceUSD,
+    tokenPriceUSD,
     token: deserializeToken(farm.token),
     quoteToken: deserializeToken(farm.quoteToken),
     userData: deserializeFarmUserData(farm),
@@ -124,7 +124,7 @@ export const useFarmUser = (pid): DeserializedFarmUserData => {
 // Return the base token price for a farm, from a given pid
 export const useBusdPriceFromPid = (pid: number): BigNumber => {
   const farm = useFarmFromPid(pid)
-  return farm && new BigNumber(farm.tokenPriceBusd)
+  return farm && new BigNumber(farm.tokenPriceUSD)
 }
 
 export const useLpTokenPrice = (symbol: string) => {
@@ -145,13 +145,13 @@ export const useLpTokenPrice = (symbol: string) => {
   return lpTokenPrice
 }
 
-// /!\ Deprecated , use the BUSD hook in /hooks
+// /!\ Deprecated , use the USDT hook in /hooks
 
 export const usePriceCakeBusd = (): BigNumber => {
   const cakeBnbFarm = useFarmFromPid(2)
   console.info(`usePriceCakeBusd cakeBnbFarm: `, cakeBnbFarm)
 
-  const cakePriceBusdAsString = cakeBnbFarm.tokenPriceBusd
+  const cakePriceBusdAsString = cakeBnbFarm.tokenPriceUSD
 
   const cakePriceBusd = useMemo(() => {
     return new BigNumber(cakePriceBusdAsString)

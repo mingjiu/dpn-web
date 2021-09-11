@@ -36,11 +36,23 @@ export const getFarmApr = (
   poolLiquidityUsd: BigNumber,
   farmAddress: string,
 ): { cakeRewardsApr: number; lpRewardsApr: number } => {
+  // return { cakeRewardsApr: cakeRewardsAprAsNumber, lpRewardsApr }
   console.info(`farm weight: `, poolWeight)
   console.info(`cakePriceUsd: `, cakePriceUsd)
   console.info(`poolLiquidityUsd: `, poolLiquidityUsd)
+
+  let _cakePriceUsd = cakePriceUsd
+  if (!cakePriceUsd || cakePriceUsd.isNaN()) {
+    _cakePriceUsd = new BigNumber(1)
+  }
+
+  let _poolLiquidityUsd = poolLiquidityUsd
+  if (!poolLiquidityUsd || poolLiquidityUsd.isNaN()) {
+    _poolLiquidityUsd = new BigNumber(1)
+  }
+
   const yearlyCakeRewardAllocation = REWARD_PER_YEAR.times(poolWeight)
-  const cakeRewardsApr = yearlyCakeRewardAllocation.times(cakePriceUsd).div(poolLiquidityUsd).times(100)
+  const cakeRewardsApr = yearlyCakeRewardAllocation.times(_cakePriceUsd).div(_poolLiquidityUsd).times(100)
   let cakeRewardsAprAsNumber = null
   if (!cakeRewardsApr.isNaN() && cakeRewardsApr.isFinite()) {
     cakeRewardsAprAsNumber = cakeRewardsApr.toNumber()
@@ -48,5 +60,26 @@ export const getFarmApr = (
   const lpRewardsApr = lpAprs[farmAddress?.toLocaleLowerCase()] ?? 0
   return { cakeRewardsApr: cakeRewardsAprAsNumber, lpRewardsApr }
 }
+
+// export const getFarmApr = (
+//   poolWeight: BigNumber,
+//   cakePriceUsd: BigNumber,
+//   poolLiquidityUsd: BigNumber,
+//   farmAddress: string,
+// ): { cakeRewardsApr: number; lpRewardsApr: number } => {
+//   // return { cakeRewardsApr: cakeRewardsAprAsNumber, lpRewardsApr }
+//   console.info(`farm weight: `, poolWeight)
+//   console.info(`cakePriceUsd: `, cakePriceUsd)
+//   console.info(`poolLiquidityUsd: `, poolLiquidityUsd)
+
+//   const yearlyCakeRewardAllocation = REWARD_PER_YEAR.times(poolWeight)
+//   const cakeRewardsApr = yearlyCakeRewardAllocation.times(cakePriceUsd).div(poolLiquidityUsd).times(100)
+//   let cakeRewardsAprAsNumber = null
+//   if (!cakeRewardsApr.isNaN() && cakeRewardsApr.isFinite()) {
+//     cakeRewardsAprAsNumber = cakeRewardsApr.toNumber()
+//   }
+//   const lpRewardsApr = lpAprs[farmAddress?.toLocaleLowerCase()] ?? 0
+//   return { cakeRewardsApr: cakeRewardsAprAsNumber, lpRewardsApr }
+// }
 
 export default null

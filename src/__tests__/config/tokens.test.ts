@@ -13,7 +13,7 @@ const tokensToTest = omitBy(
   (token) =>
     token.symbol.toLowerCase() === 'dpn' ||
     token.symbol.toLowerCase() === 'evb' ||
-    token.symbol.toLowerCase() === 'wbnb',
+    token.symbol.toLowerCase() === 'trx',
 )
 
 describe('Config tokens', () => {

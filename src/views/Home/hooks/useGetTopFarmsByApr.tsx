@@ -42,9 +42,9 @@ const useGetTopFarmsByApr = (isIntersecting: boolean) => {
 
   useEffect(() => {
     const getTopFarmsByApr = (farmsState: DeserializedFarm[]) => {
-      const farmsWithPrices = farmsState.filter((farm) => farm.lpTotalInQuoteToken && farm.quoteTokenPriceBusd)
+      const farmsWithPrices = farmsState.filter((farm) => farm.lpTotalInQuoteToken && farm.quoteTokenPriceUSD)
       const farmsWithApr: FarmWithStakedValue[] = farmsWithPrices.map((farm) => {
-        const totalLiquidity = farm.lpTotalInQuoteToken.times(farm.quoteTokenPriceBusd)
+        const totalLiquidity = farm.lpTotalInQuoteToken.times(farm.quoteTokenPriceUSD)
         const { cakeRewardsApr, lpRewardsApr } = getFarmApr(
           farm.poolWeight,
           cakePriceBusd,

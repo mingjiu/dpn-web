@@ -11,11 +11,11 @@ type ChainTokenList = {
 // used to construct intermediary pairs for trading
 export const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
   [ChainId.MAINNET]: [
-    mainnetTokens.wbnb,
+    mainnetTokens.trx,
     mainnetTokens.cake,
     mainnetTokens.usdt,
   ],
-  [ChainId.TESTNET]: [testnetTokens.wbnb, testnetTokens.cake, testnetTokens.usdt],
+  [ChainId.TESTNET]: [testnetTokens.trx, testnetTokens.cake, testnetTokens.usdt],
 }
 
 /**
@@ -37,19 +37,19 @@ export const CUSTOM_BASES: { [chainId in ChainId]?: { [tokenAddress: string]: To
 
 // used for display in the default list when adding liquidity
 export const SUGGESTED_BASES: ChainTokenList = {
-  [ChainId.MAINNET]: [mainnetTokens.usdt, mainnetTokens.cake, mainnetTokens.wbnb],
-  [ChainId.TESTNET]: [testnetTokens.wbnb, testnetTokens.cake, testnetTokens.usdt],
+  [ChainId.MAINNET]: [mainnetTokens.usdt, mainnetTokens.cake, mainnetTokens.trx],
+  [ChainId.TESTNET]: [testnetTokens.trx, testnetTokens.cake, testnetTokens.usdt],
 }
 
 // used to construct the list of all pairs we consider by default in the frontend
 export const BASES_TO_TRACK_LIQUIDITY_FOR: ChainTokenList = {
-  [ChainId.MAINNET]: [mainnetTokens.wbnb, mainnetTokens.usdt],
-  [ChainId.TESTNET]: [testnetTokens.wbnb, testnetTokens.cake, testnetTokens.usdt],
+  [ChainId.MAINNET]: [mainnetTokens.trx, mainnetTokens.usdt],
+  [ChainId.TESTNET]: [testnetTokens.trx, testnetTokens.cake, testnetTokens.usdt],
 }
 
 export const PINNED_PAIRS: { readonly [chainId in ChainId]?: [Token, Token][] } = {
   [ChainId.MAINNET]: [
-    [mainnetTokens.cake, mainnetTokens.wbnb],
+    [mainnetTokens.cake, mainnetTokens.trx],
   ],
 }
 
