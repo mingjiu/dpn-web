@@ -5,11 +5,11 @@ import { useWeb3React } from '@web3-react/core'
 import useTheme from 'hooks/useTheme'
 import Container from 'components/Layout/Container'
 import { PageMeta } from 'components/Layout/Page'
-import Hero from './components/Hero'
+// import Hero from './components/Hero'
 import { swapSectionData, earnSectionData, cakeSectionData } from './components/SalesSection/data'
 import MetricsSection from './components/MetricsSection'
-import SalesSection from './components/SalesSection'
-import WinSection from './components/WinSection'
+// import SalesSection from './components/SalesSection'
+// import WinSection from './components/WinSection'
 import FarmsPoolsRow from './components/FarmsPoolsRow'
 import Footer from './components/Footer'
 import CakeDataRow from './components/CakeDataRow'
@@ -64,7 +64,7 @@ const Home: React.FC = () => {
             <UserBanner />
           </UserBannerWrapper>
         )}
-        <Hero />
+        {/* <Hero /> */}
       </StyledHeroSection>
       <PageSection
         innerProps={{ style: { margin: '0', width: '100%' } }}
@@ -89,7 +89,7 @@ const Home: React.FC = () => {
             <WedgeTopLeft />
           </InnerWedgeWrapper>
         </OuterWedgeWrapper>
-        <SalesSection {...swapSectionData} />
+        {/* <SalesSection {...swapSectionData} /> */}
       </PageSection>
       <PageSection
         innerProps={{ style: HomeSectionContainerStyles }}
@@ -102,10 +102,10 @@ const Home: React.FC = () => {
             <WedgeTopRight />
           </InnerWedgeWrapper>
         </OuterWedgeWrapper>
-        <SalesSection {...earnSectionData} />
+        {/* <SalesSection {...earnSectionData} /> */}
         <FarmsPoolsRow />
       </PageSection>
-      <PageSection
+      {/* <PageSection
         innerProps={{ style: HomeSectionContainerStyles }}
         background={
           theme.isDark
@@ -116,14 +116,14 @@ const Home: React.FC = () => {
         hasCurvedDivider={false}
       >
         <WinSection />
-      </PageSection>
+      </PageSection> */}
       <PageSection
         innerProps={{ style: HomeSectionContainerStyles }}
         background={theme.colors.background}
         index={2}
         hasCurvedDivider={false}
       >
-        <SalesSection {...cakeSectionData} />
+        {/* <SalesSection {...cakeSectionData} /> */}
         <CakeDataRow />
       </PageSection>
       <PageSection

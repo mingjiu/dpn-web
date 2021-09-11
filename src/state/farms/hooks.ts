@@ -83,12 +83,13 @@ export const usePollCoreFarmData = () => {
   const { fastRefresh } = useRefresh()
 
   useEffect(() => {
-    dispatch(fetchFarmsPublicDataAsync([0, 1]))
+    dispatch(fetchFarmsPublicDataAsync([0, 1, 2]))
   }, [dispatch, fastRefresh])
 }
 
 export const useFarms = (): DeserializedFarmsState => {
   const farms = useSelector((state: State) => state.farms)
+  console.info(`farms: `, farms)
   const deserializedFarmsData = farms.data.map(deserializeFarm)
   const { loadArchivedFarmsData, userDataLoaded } = farms
   return {
@@ -100,6 +101,7 @@ export const useFarms = (): DeserializedFarmsState => {
 
 export const useFarmFromPid = (pid: number): DeserializedFarm => {
   const farm = useSelector((state: State) => state.farms.data.find((f) => f.pid === pid))
+  console.info(`useFarmFromPid ${pid} farm: `, farm)
   return deserializeFarm(farm)
 }
 
@@ -146,7 +148,7 @@ export const useLpTokenPrice = (symbol: string) => {
 // /!\ Deprecated , use the BUSD hook in /hooks
 
 export const usePriceCakeBusd = (): BigNumber => {
-  const cakeBnbFarm = useFarmFromPid(1)
+  const cakeBnbFarm = useFarmFromPid(2)
 
   const cakePriceBusdAsString = cakeBnbFarm.tokenPriceBusd
 

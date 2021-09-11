@@ -2,10 +2,10 @@ import React, { useState, useEffect, useRef, useCallback } from 'react'
 import styled from 'styled-components'
 import { Flex, Box, SwapVertIcon, IconButton } from '@pancakeswap/uikit'
 import { useTranslation } from 'contexts/Localization'
-import { DeserializedPool } from 'state/types'
+// import { DeserializedPool } from 'state/types'
 import useIntersectionObserver from 'hooks/useIntersectionObserver'
 import useGetTopFarmsByApr from 'views/Home/hooks/useGetTopFarmsByApr'
-import useGetTopPoolsByApr from 'views/Home/hooks/useGetTopPoolsByApr'
+// import useGetTopPoolsByApr from 'views/Home/hooks/useGetTopPoolsByApr'
 import TopFarmPool from './TopFarmPool'
 import RowHeading from './RowHeading'
 
@@ -28,10 +28,10 @@ const FarmsPoolsRow = () => {
   const { t } = useTranslation()
   const { observerRef, isIntersecting } = useIntersectionObserver()
   const { topFarms } = useGetTopFarmsByApr(isIntersecting)
-  const { topPools } = useGetTopPoolsByApr(isIntersecting)
+  // const { topPools } = useGetTopPoolsByApr(isIntersecting)
 
   const timer = useRef<ReturnType<typeof setTimeout>>(null)
-  const isLoaded = topFarms[0] && topPools[0]
+  const isLoaded = topFarms[0] 
 
   const startTimer = useCallback(() => {
     timer.current = setInterval(() => {
@@ -49,20 +49,20 @@ const FarmsPoolsRow = () => {
     }
   }, [timer, isLoaded, startTimer])
 
-  const getPoolText = (pool: DeserializedPool) => {
-    if (pool.isAutoVault) {
-      return t('Auto CAKE')
-    }
+  // const getPoolText = (pool: DeserializedPool) => {
+  //   if (pool.isAutoVault) {
+  //     return t('Auto CAKE')
+  //   }
 
-    if (pool.sousId === 0) {
-      return t('Manual CAKE')
-    }
+  //   if (pool.sousId === 0) {
+  //     return t('Manual CAKE')
+  //   }
 
-    return t('Stake %stakingSymbol% - Earn %earningSymbol%', {
-      earningSymbol: pool.earningToken.symbol,
-      stakingSymbol: pool.stakingToken.symbol,
-    })
-  }
+  //   return t('Stake %stakingSymbol% - Earn %earningSymbol%', {
+  //     earningSymbol: pool.earningToken.symbol,
+  //     stakingSymbol: pool.stakingToken.symbol,
+  //   })
+  // }
 
   return (
     <div ref={observerRef}>
@@ -95,7 +95,7 @@ const FarmsPoolsRow = () => {
               />
             ))}
           </Grid>
-          <Grid>
+          {/* <Grid>
             {topPools.map((topPool, index) => (
               <TopFarmPool
                 // eslint-disable-next-line react/no-array-index-key
@@ -106,7 +106,7 @@ const FarmsPoolsRow = () => {
                 visible={!showFarms}
               />
             ))}
-          </Grid>
+          </Grid> */}
         </Box>
       </Flex>
     </div>

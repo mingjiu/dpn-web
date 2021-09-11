@@ -9,7 +9,7 @@ import { useTransactionAdder } from '../state/transactions/hooks'
 import { calculateGasMargin, getRouterContract, isAddress, shortenAddress } from '../utils'
 import isZero from '../utils/isZero'
 import useTransactionDeadline from './useTransactionDeadline'
-import useENS from './ENS/useENS'
+// import useENS from './ENS/useENS'
 
 export enum SwapCallbackState {
   INVALID,
@@ -47,8 +47,8 @@ function useSwapCallArguments(
 ): SwapCall[] {
   const { account, chainId, library } = useActiveWeb3React()
 
-  const { address: recipientAddress } = useENS(recipientAddressOrName)
-  const recipient = recipientAddressOrName === null ? account : recipientAddress
+  // const { address: recipientAddress } = useENS(recipientAddressOrName)
+  const recipient = recipientAddressOrName  ?? account // === null ? account : recipientAddress
   const deadline = useTransactionDeadline()
 
   return useMemo(() => {
@@ -99,8 +99,8 @@ export function useSwapCallback(
 
   const addTransaction = useTransactionAdder()
 
-  const { address: recipientAddress } = useENS(recipientAddressOrName)
-  const recipient = recipientAddressOrName === null ? account : recipientAddress
+  // const { address: recipientAddress } = useENS(recipientAddressOrName)
+  const recipient = recipientAddressOrName ?? account // === null ? account : recipientAddress
 
   return useMemo(() => {
     if (!trade || !library || !account || !chainId) {

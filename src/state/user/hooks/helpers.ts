@@ -3,24 +3,26 @@ import { SerializedToken } from 'config/constants/types'
 import { parseUnits } from 'ethers/lib/utils'
 
 export function serializeToken(token: Token): SerializedToken {
+  const chainId = parseInt(process.env.REACT_APP_CHAIN_ID, 10)
   return {
-    chainId: token.chainId,
+    chainId,
     address: token.address,
     decimals: token.decimals,
     symbol: token.symbol,
     name: token.name,
-    projectLink: token.projectLink,
+    projectLink: 'token.projectLink',
   }
 }
 
 export function deserializeToken(serializedToken: SerializedToken): Token {
+  const chainId = parseInt(process.env.REACT_APP_CHAIN_ID, 10)
   return new Token(
-    serializedToken.chainId,
+    chainId,
     serializedToken.address,
     serializedToken.decimals,
     serializedToken.symbol,
     serializedToken.name,
-    serializedToken.projectLink,
+    'serializedToken.projectLink',
   )
 }
 

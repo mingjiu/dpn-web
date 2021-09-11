@@ -3,7 +3,7 @@ import { Currency, CurrencyAmount, ETHER, JSBI, Token, TokenAmount, Trade } from
 import { ParsedQs } from 'qs'
 import { useCallback, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import useENS from 'hooks/ENS/useENS'
+// import useENS from 'hooks/ENS/useENS'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { useCurrency } from 'hooks/Tokens'
 import { useTradeExactIn, useTradeExactOut } from 'hooks/Trades'
@@ -125,7 +125,7 @@ export function useDerivedSwapInfo(): {
 
   const inputCurrency = useCurrency(inputCurrencyId)
   const outputCurrency = useCurrency(outputCurrencyId)
-  const recipientLookup = useENS(recipient ?? undefined)
+  const recipientLookup = { address: recipient } //  useENS(recipient ?? undefined)
   const to: string | null = (recipient === null ? account : recipientLookup.address) ?? null
 
   const relevantTokenBalances = useCurrencyBalances(account ?? undefined, [

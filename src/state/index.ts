@@ -2,15 +2,15 @@ import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit'
 import { save, load } from 'redux-localstorage-simple'
 import { useDispatch } from 'react-redux'
 import farmsReducer from './farms'
-import poolsReducer from './pools'
-import predictionsReducer from './predictions'
-import profileReducer from './profile'
-import teamsReducer from './teams'
-import achievementsReducer from './achievements'
+// import poolsReducer from './pools'
+// import predictionsReducer from './predictions'
+// import profileReducer from './profile'
+// import teamsReducer from './teams'
+// import achievementsReducer from './achievements'
 import blockReducer from './block'
-import collectiblesReducer from './collectibles'
-import votingReducer from './voting'
-import lotteryReducer from './lottery'
+// import collectiblesReducer from './collectibles'
+// import votingReducer from './voting'
+// import lotteryReducer from './lottery'
 import infoReducer from './info'
 import { updateVersion } from './global/actions'
 import user from './user/reducer'
@@ -26,16 +26,16 @@ const PERSISTED_KEYS: string[] = ['user', 'transactions', 'lists', 'profile', 'c
 const store = configureStore({
   devTools: process.env.NODE_ENV !== 'production',
   reducer: {
-    achievements: achievementsReducer,
+    // achievements: achievementsReducer,
     block: blockReducer,
     farms: farmsReducer,
-    pools: poolsReducer,
-    predictions: predictionsReducer,
-    profile: profileReducer,
-    teams: teamsReducer,
-    collectibles: collectiblesReducer,
-    voting: votingReducer,
-    lottery: lotteryReducer,
+    // pools: poolsReducer,
+    // predictions: predictionsReducer,
+    // profile: profileReducer,
+    // teams: teamsReducer,
+    // collectibles: collectiblesReducer,
+    // voting: votingReducer,
+    // lottery: lotteryReducer,
     info: infoReducer,
 
     // Exchange

@@ -2,8 +2,7 @@ import React from 'react'
 import { NoProfileAvatarIcon, Flex, Heading, Skeleton, Text, Box } from '@pancakeswap/uikit'
 import { useWeb3React } from '@web3-react/core'
 import styled from 'styled-components'
-import { useProfile } from 'state/profile/hooks'
-import ProfileAvatarWithTeam from 'components/ProfileAvatarWithTeam'
+// import { useProfile } from 'state/profile/hooks'
 import { useTranslation } from 'contexts/Localization'
 import truncateHash from 'utils/truncateHash'
 
@@ -36,7 +35,9 @@ const StyledNoProfileAvatarIcon = styled(NoProfileAvatarIcon)`
 `
 
 const UserDetail = () => {
-  const { profile, isLoading } = useProfile()
+  // const { profile, isLoading } = useProfile()
+  const profile = undefined
+  const isLoading = false
   const { t } = useTranslation()
   const { account } = useWeb3React()
   const truncatedAddress = truncateHash(account)
@@ -69,7 +70,7 @@ const UserDetail = () => {
     <>
       <Desktop>
         <Box mr="24px">
-          <Sticker>{profile ? <ProfileAvatarWithTeam profile={profile} /> : <StyledNoProfileAvatarIcon />}</Sticker>
+          <Sticker><StyledNoProfileAvatarIcon /></Sticker>
         </Box>
         <Flex flexDirection="column">
           {getDesktopHeading()}

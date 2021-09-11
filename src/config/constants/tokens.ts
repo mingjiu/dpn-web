@@ -47,6 +47,14 @@ export const mainnetTokens = {
     'EV Blockchain',
     'https://tether.to/',
   ),
+  dpn: new Token(
+    MAINNET,
+    '0xdc8C4625A42e6bB7baf6a2eB7E8E4Cf462deED53',
+    18,
+    'DPN',
+    'DPN Token',
+    'https://daphne.finance/',
+  ),
 }
 
 export const testnetTokens = {
@@ -54,8 +62,8 @@ export const testnetTokens = {
     TESTNET,
     '0xae13d989dac2f0debff460ac112a837c89baa7cd',
     18,
-    'WBNB',
-    'Wrapped BNB',
+    'TRX',
+    'TRON',
     'https://www.binance.com/',
   ),
   cake: new Token(
@@ -75,6 +83,14 @@ export const testnetTokens = {
     'https://www.paxos.com/busd/',
   ),
   syrup: new Token(
+    TESTNET,
+    '0xdc8C4625A42e6bB7baf6a2eB7E8E4Cf462deED53',
+    18,
+    'DPN',
+    'DPN Token',
+    'https://daphne.finance/',
+  ),
+  dpn: new Token(
     TESTNET,
     '0xdc8C4625A42e6bB7baf6a2eB7E8E4Cf462deED53',
     18,

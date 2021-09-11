@@ -5,7 +5,7 @@ import styled from 'styled-components'
 import { TokenList, Version } from '@uniswap/token-lists'
 import Card from 'components/Card'
 import { UNSUPPORTED_LIST_URLS } from 'config/constants/lists'
-import { parseENSAddress } from 'utils/ENS/parseENSAddress'
+// import { parseENSAddress } from 'utils/ENS/parseENSAddress'
 import { useTranslation } from 'contexts/Localization'
 import useFetchListCallback from '../../hooks/useFetchListCallback'
 
@@ -163,7 +163,7 @@ function ManageLists({
   const fetchList = useFetchListCallback()
 
   const validUrl: boolean = useMemo(() => {
-    return uriToHttp(listUrlInput).length > 0 || Boolean(parseENSAddress(listUrlInput))
+    return uriToHttp(listUrlInput).length > 0 // || Boolean(parseENSAddress(listUrlInput))
   }, [listUrlInput])
 
   const sortedLists = useMemo(() => {

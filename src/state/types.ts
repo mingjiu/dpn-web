@@ -13,7 +13,6 @@ import {
   TranslatableText,
   DeserializedFarmConfig,
 } from 'config/constants/types'
-import { Nft } from 'config/constants/nfts/types'
 
 export type AppThunk<ReturnType = void> = ThunkAction<ReturnType, State, unknown, AnyAction>
 
@@ -95,11 +94,9 @@ export interface Profile {
   userId: number
   points: number
   teamId: number
-  nftAddress: string
   tokenId: number
   isActive: boolean
   username: string
-  nft?: Nft
   team: Team
   hasRegistered: boolean
 }
@@ -156,7 +153,6 @@ export interface ProfileState {
   profileAvatars: {
     [key: string]: {
       username: string
-      nft: Nft
     }
   }
 }
@@ -564,14 +560,14 @@ export type UserTicketsResponse = [ethers.BigNumber[], number[], boolean[]]
 // Global state
 
 export interface State {
-  achievements: AchievementState
+  // achievements: AchievementState
   block: BlockState
   farms: SerializedFarmsState
-  pools: PoolsState
-  predictions: PredictionsState
+  // pools: PoolsState
+  // predictions: PredictionsState
   profile: ProfileState
-  teams: TeamsState
-  collectibles: CollectiblesState
-  voting: VotingState
-  lottery: LotteryState
+  // teams: TeamsState
+  // collectibles: CollectiblesState
+  // voting: VotingState
+  // lottery: LotteryState
 }

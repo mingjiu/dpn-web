@@ -2,7 +2,7 @@ import React, { useCallback } from 'react'
 import styled from 'styled-components'
 import { Text, Link } from '@pancakeswap/uikit'
 import { useTranslation } from 'contexts/Localization'
-import useENS from '../../../hooks/ENS/useENS'
+// import useENS from '../../../hooks/ENS/useENS'
 import useActiveWeb3React from '../../../hooks/useActiveWeb3React'
 import { AutoColumn } from '../../../components/Layout/Column'
 import { RowBetween } from '../../../components/Layout/Row'
@@ -81,7 +81,7 @@ export default function AddressInputPanel({
 
   const { t } = useTranslation()
 
-  const { address, loading, name } = useENS(value)
+  // const { address, loading, name } = useENS(value)
 
   const handleInput = useCallback(
     (event) => {
@@ -92,21 +92,21 @@ export default function AddressInputPanel({
     [onChange],
   )
 
-  const error = Boolean(value.length > 0 && !loading && !address)
+  const error = Boolean(value.length > 0) // && !loading && !address
 
   return (
     <InputPanel id={id}>
       <ContainerRow error={error}>
         <InputContainer>
           <AutoColumn gap="md">
-            <RowBetween>
+            {/* <RowBetween>
               <Text>{t('Recipient')}</Text>
               {address && chainId && (
                 <Link external small href={getBscScanLink(name ?? address, 'address', chainId)}>
                   ({t('View on BscScan')})
                 </Link>
               )}
-            </RowBetween>
+            </RowBetween> */}
             <Input
               className="recipient-address-input"
               type="text"
