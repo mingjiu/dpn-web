@@ -104,7 +104,7 @@ const RoiCalculatorFooter: React.FC<RoiCalculatorFooterProps> = ({
             <Text small textAlign="right">
               {apy}%
             </Text>
-            {isFarm && (
+            {/* {isFarm && (
               <>
                 <Text color="textSubtle" small>
                   {t('Farm Multiplier')}
@@ -119,7 +119,7 @@ const RoiCalculatorFooter: React.FC<RoiCalculatorFooterProps> = ({
                   {multiplierTooltipVisible && multiplierTooltip}
                 </Flex>
               </>
-            )}
+            )} */}
           </Grid>
           <BulletList>
             <li>
