@@ -12,13 +12,13 @@ If you want to contribute, please refer to the [contributing guidelines](./CONTR
 - [Cypress tests](doc/Cypress.md)
 
 
- 🧞‍♂️ TRX: 0xae13d989dac2f0debff460ac112a837c89baa7cd
- 🧞‍♂️ USDT: 0x337610d27c682e347c9cd60bd4b3b107c9d34ddd
- 🧞‍♂️ EVB: 0xe3A3079ec45CF594131f0401A999e2cB027D032d
- 🧞‍♂️ XXX: 0x32F05ffDb0f7D2d14396c3036958655c74d3143a
- 🧞‍♂️ DPN: 0xdc8C4625A42e6bB7baf6a2eB7E8E4Cf462deED53
- 🧞‍♂️ MasterChef: 0x63E67EeA131070d480c252A4f167a0F2776632d1
- 💰 100000000.0
+-  🧞‍♂️ TRX: 0xae13d989dac2f0debff460ac112a837c89baa7cd
+-  🧞‍♂️ USDT: 0x337610d27c682e347c9cd60bd4b3b107c9d34ddd
+-  🧞‍♂️ EVB: 0xe3A3079ec45CF594131f0401A999e2cB027D032d
+-  🧞‍♂️ XXX: 0x32F05ffDb0f7D2d14396c3036958655c74d3143a
+-  🧞‍♂️ DPN: 0xdc8C4625A42e6bB7baf6a2eB7E8E4Cf462deED53
+-  🧞‍♂️ MasterChef: 0x63E67EeA131070d480c252A4f167a0F2776632d1
+- 💰 100000000.0
  
  
 - dpn-farm testnet: 0x63E67EeA131070d480c252A4f167a0F2776632d1
