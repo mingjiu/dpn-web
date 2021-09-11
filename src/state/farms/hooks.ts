@@ -21,7 +21,7 @@ const deserializeFarmUserData = (farm: SerializedFarm): DeserializedFarmUserData
 }
 
 const deserializeFarm = (farm: SerializedFarm): DeserializedFarm => {
-  console.info('deserializeFarm: ', farm)
+  // console.info('deserializeFarm: ', farm)
   const { lpAddresses, lpSymbol, pid, dual, multiplier, isCommunity, quoteTokenPriceBusd, tokenPriceBusd } = farm
 
   return {
@@ -89,7 +89,7 @@ export const usePollCoreFarmData = () => {
 
 export const useFarms = (): DeserializedFarmsState => {
   const farms = useSelector((state: State) => state.farms)
-  console.info(`farms: `, farms)
+  // console.info(`farms: `, farms)
   const deserializedFarmsData = farms.data.map(deserializeFarm)
   const { loadArchivedFarmsData, userDataLoaded } = farms
   return {
@@ -101,7 +101,7 @@ export const useFarms = (): DeserializedFarmsState => {
 
 export const useFarmFromPid = (pid: number): DeserializedFarm => {
   const farm = useSelector((state: State) => state.farms.data.find((f) => f.pid === pid))
-  console.info(`useFarmFromPid ${pid} farm: `, farm)
+  // console.info(`useFarmFromPid ${pid} farm: `, farm)
   return deserializeFarm(farm)
 }
 
@@ -149,7 +149,7 @@ export const useLpTokenPrice = (symbol: string) => {
 
 export const usePriceCakeBusd = (): BigNumber => {
   const cakeBnbFarm = useFarmFromPid(2)
-  console.info(`cakeBnbFarm: `, cakeBnbFarm)
+  console.info(`usePriceCakeBusd cakeBnbFarm: `, cakeBnbFarm)
 
   const cakePriceBusdAsString = cakeBnbFarm.tokenPriceBusd
 

@@ -12,7 +12,7 @@ const farms: SerializedFarmConfig[] = [
     lpSymbol: 'DPN',
     lpAddresses: {
       97: '0xdc8C4625A42e6bB7baf6a2eB7E8E4Cf462deED53',
-      56: '0x0e09fabb73bd3ade0a17ecc321fd13a19e81ce82',
+      56: '0xdc8C4625A42e6bB7baf6a2eB7E8E4Cf462deED53',
     },
     token: serializedTokens.dpn,
     quoteToken: serializedTokens.dpn,
@@ -36,7 +36,17 @@ const farms: SerializedFarmConfig[] = [
     },
     token: serializedTokens.wbnb,
     quoteToken: serializedTokens.dpn,
-  }
+  },
+  // {
+  //   pid: 3,
+  //   lpSymbol: 'USDT',
+  //   lpAddresses: {
+  //     97: '0x337610d27c682e347c9cd60bd4b3b107c9d34ddd',
+  //     56: '0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c',
+  //   },
+  //   token: serializedTokens.usdt,
+  //   quoteToken: serializedTokens.dpn,
+  // }
 ]
 
 export default farms

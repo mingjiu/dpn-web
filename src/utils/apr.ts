@@ -37,6 +37,8 @@ export const getFarmApr = (
   farmAddress: string,
 ): { cakeRewardsApr: number; lpRewardsApr: number } => {
   console.info(`farm weight: `, poolWeight)
+  console.info(`cakePriceUsd: `, cakePriceUsd)
+  console.info(`poolLiquidityUsd: `, poolLiquidityUsd)
   const yearlyCakeRewardAllocation = CAKE_PER_YEAR.times(poolWeight)
   const cakeRewardsApr = yearlyCakeRewardAllocation.times(cakePriceUsd).div(poolLiquidityUsd).times(100)
   let cakeRewardsAprAsNumber = null

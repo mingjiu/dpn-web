@@ -57,6 +57,7 @@ const fetchFarm = async (farm: SerializedFarm): Promise<PublicFarmData> => {
   const [tokenBalanceLP, quoteTokenBalanceLP, lpTokenBalanceMC, lpTotalSupply, tokenDecimals, quoteTokenDecimals] =
     await multicall(erc20, calls)
 
+  console.info(`>>> ${pid} [tokenBalanceLP, quoteTokenBalanceLP, lpTokenBalanceMC, lpTotalSupply, tokenDecimals, quoteTokenDecimals]`, [tokenBalanceLP, quoteTokenBalanceLP, lpTokenBalanceMC, lpTotalSupply, tokenDecimals, quoteTokenDecimals])
   // Ratio in % of LP tokens that are staked in the MC, vs the total number in circulation
   const lpTokenRatio = new BigNumber(lpTokenBalanceMC).div(new BigNumber(lpTotalSupply))
 
@@ -86,17 +87,21 @@ const fetchFarm = async (farm: SerializedFarm): Promise<PublicFarmData> => {
         ])
       : [null, null]
 
+  
   const allocPoint = info ? new BigNumber(info.allocPoint?._hex) : BIG_ZERO
   const poolWeight = totalAllocPoint ? allocPoint.div(new BigNumber(totalAllocPoint)) : BIG_ZERO
 
-  return {
+  const r =  {
     tokenAmountTotal: tokenAmountTotal.toJSON(),
     lpTotalSupply: new BigNumber(lpTotalSupply).toJSON(),
     lpTotalInQuoteToken: lpTotalInQuoteToken.toJSON(),
-    tokenPriceVsQuote: quoteTokenAmountTotal.div(tokenAmountTotal).toJSON(),
+    tokenPriceVsQuote: '1', // quoteTokenAmountTotal.div(tokenAmountTotal).toJSON(),
     poolWeight: poolWeight.toJSON(),
     multiplier: `${allocPoint.div(100).toString()}X`,
   }
+
+  console.info(`>>> ${pid} fetchFarm: r: `, r)
+  return r
 }
 
 export default fetchFarm
