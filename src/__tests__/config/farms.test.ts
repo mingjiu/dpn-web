@@ -20,41 +20,41 @@ describe('Config farms', () => {
     expect(duplicates).toHaveLength(1)
   })
 
-  it.each(farmsToTest)('Farm %d has the correct token addresses', async (pid, farm) => {
-    const tokenAddress = farm.token.address
-    const quoteTokenAddress = farm.quoteToken.address
-    const lpContract = getLpContract(farm.lpAddresses[56])
+  // it.each(farmsToTest)('Farm %d has the correct token addresses', async (pid, farm) => {
+  //   const tokenAddress = farm.token.address
+  //   const quoteTokenAddress = farm.quoteToken.address
+  //   const lpContract = getLpContract(farm.lpAddresses[56])
 
-    const token0Address = (await lpContract.token0()).toLowerCase()
-    const token1Address = (await lpContract.token1()).toLowerCase()
+  //   const token0Address = (await lpContract.token0()).toLowerCase()
+  //   const token1Address = (await lpContract.token1()).toLowerCase()
 
-    expect(
-      token0Address === tokenAddress.toLowerCase() || token0Address === quoteTokenAddress.toLowerCase(),
-    ).toBeTruthy()
-    expect(
-      token1Address === tokenAddress.toLowerCase() || token1Address === quoteTokenAddress.toLowerCase(),
-    ).toBeTruthy()
-  })
+  //   expect(
+  //     token0Address === tokenAddress.toLowerCase() || token0Address === quoteTokenAddress.toLowerCase(),
+  //   ).toBeTruthy()
+  //   expect(
+  //     token1Address === tokenAddress.toLowerCase() || token1Address === quoteTokenAddress.toLowerCase(),
+  //   ).toBeTruthy()
+  // })
 
-  it.each(farmsToTest)('Farm %d has non 0 tokens amount', async (pid, farm) => {
-    const tokenContract = getBep20Contract(farm.token.address)
-    const quoteTokenContract = getBep20Contract(farm.quoteToken.address)
+  // it.each(farmsToTest)('Farm %d has non 0 tokens amount', async (pid, farm) => {
+  //   const tokenContract = getBep20Contract(farm.token.address)
+  //   const quoteTokenContract = getBep20Contract(farm.quoteToken.address)
 
-    const tokenAmount: BigNumber = await tokenContract.balanceOf(farm.lpAddresses[56])
-    const quoteTokenAmount: BigNumber = await quoteTokenContract.balanceOf(farm.lpAddresses[56])
+  //   const tokenAmount: BigNumber = await tokenContract.balanceOf(farm.lpAddresses[56])
+  //   const quoteTokenAmount: BigNumber = await quoteTokenContract.balanceOf(farm.lpAddresses[56])
 
-    expect(tokenAmount.gt(0)).toBeTruthy()
-    expect(quoteTokenAmount.gt(0)).toBeTruthy()
-  })
+  //   expect(tokenAmount.gt(0)).toBeTruthy()
+  //   expect(quoteTokenAmount.gt(0)).toBeTruthy()
+  // })
 
-  // The first pid using the new factory
-  const START_PID = 365
-  const FACTORY_ADDRESS = '0xca143ce32fe78f1f7019d7d551a6402fc5350c73'
-  const newFarmsToTest = farmsToTest.filter((farmSet) => farmSet[0] >= START_PID)
+  // // The first pid using the new factory
+  // const START_PID = 365
+  // const FACTORY_ADDRESS = '0xca143ce32fe78f1f7019d7d551a6402fc5350c73'
+  // const newFarmsToTest = farmsToTest.filter((farmSet) => farmSet[0] >= START_PID)
 
-  it.each(newFarmsToTest)('farm %d is using correct factory address', async (pid, farm) => {
-    const lpContract = getLpContract(farm.lpAddresses[56])
-    const factory = await lpContract.factory()
-    expect(factory.toLowerCase()).toEqual(FACTORY_ADDRESS)
-  })
+  // it.each(newFarmsToTest)('farm %d is using correct factory address', async (pid, farm) => {
+  //   const lpContract = getLpContract(farm.lpAddresses[56])
+  //   const factory = await lpContract.factory()
+  //   expect(factory.toLowerCase()).toEqual(FACTORY_ADDRESS)
+  // })
 })
