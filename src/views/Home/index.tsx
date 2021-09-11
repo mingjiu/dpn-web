@@ -78,7 +78,7 @@ const Home: React.FC = () => {
       >
         <MetricsSection />
       </PageSection>
-      <PageSection
+      {/* <PageSection
         innerProps={{ style: HomeSectionContainerStyles }}
         background={theme.colors.background}
         index={2}
@@ -89,9 +89,9 @@ const Home: React.FC = () => {
             <WedgeTopLeft />
           </InnerWedgeWrapper>
         </OuterWedgeWrapper>
-        {/* <SalesSection {...swapSectionData} /> */}
-      </PageSection>
-      <PageSection
+        <SalesSection {...swapSectionData} />
+      </PageSection> */}
+      {/* <PageSection
         innerProps={{ style: HomeSectionContainerStyles }}
         background={theme.colors.gradients.cardHeader}
         index={2}
@@ -102,9 +102,9 @@ const Home: React.FC = () => {
             <WedgeTopRight />
           </InnerWedgeWrapper>
         </OuterWedgeWrapper>
-        {/* <SalesSection {...earnSectionData} /> */}
+        {<SalesSection {...earnSectionData} />
         <FarmsPoolsRow />
-      </PageSection>
+      </PageSection> */}
       {/* <PageSection
         innerProps={{ style: HomeSectionContainerStyles }}
         background={

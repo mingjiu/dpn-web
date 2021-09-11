@@ -49,6 +49,7 @@ const CakeDataRow = () => {
   const burnedBalance = getBalanceNumber(useBurnedBalance(tokens.cake.address))
   const cakeSupply = totalSupply ? getBalanceNumber(totalSupply) - burnedBalance : 0
   const cakePriceBusd = usePriceCakeBusd()
+  console.info(`cakePriceBusd: ${cakePriceBusd}`)
   const mcap = cakePriceBusd.times(cakeSupply)
   const mcapString = formatLocalisedCompactNumber(mcap.toNumber())
 
@@ -62,14 +63,14 @@ const CakeDataRow = () => {
           <Skeleton height={24} width={126} my="4px" />
         )}
       </Flex>
-      <StyledColumn>
+      {/* <StyledColumn>
         <Text color="textSubtle">{t('Burned to date')}</Text>
         {burnedBalance ? (
           <Balance decimals={0} lineHeight="1.1" fontSize="24px" bold value={burnedBalance} />
         ) : (
           <Skeleton height={24} width={126} my="4px" />
         )}
-      </StyledColumn>
+      </StyledColumn> */}
       <StyledColumn noMobileBorder>
         <Text color="textSubtle">{t('Market cap')}</Text>
         {mcap?.gt(0) && mcapString ? (
@@ -77,7 +78,7 @@ const CakeDataRow = () => {
         ) : (
           <Skeleton height={24} width={126} my="4px" />
         )}
-      </StyledColumn>
+      </StyledColumn> 
       <StyledColumn>
         <Text color="textSubtle">{t('Current emissions')}</Text>
 

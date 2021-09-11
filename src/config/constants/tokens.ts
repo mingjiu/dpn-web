@@ -74,13 +74,13 @@ export const testnetTokens = {
     'Daphne Token',
     'https://pancakeswap.finance/',
   ),
-  busd: new Token(
+  usdt: new Token(
     TESTNET,
-    '0xeD24FC36d5Ee211Ea25A80239Fb8C4Cfd80f12Ee',
+    '0x337610d27c682e347c9cd60bd4b3b107c9d34ddd',
     18,
-    'BUSD',
-    'Binance USD',
-    'https://www.paxos.com/busd/',
+    'USDT',
+    'Tether USD',
+    'https://tether.to/',
   ),
   syrup: new Token(
     TESTNET,
