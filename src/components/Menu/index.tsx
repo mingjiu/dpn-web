@@ -7,7 +7,7 @@ import { usePriceCakeBusd } from 'state/farms/hooks'
 // import { useProfile } from 'state/profile/hooks'
 import config from './config'
 import UserMenu from './UserMenu'
-import GlobalSettings from './GlobalSettings'
+// import GlobalSettings from './GlobalSettings'
 
 const Menu = (props) => {
   const { isDark, toggleTheme } = useTheme()
