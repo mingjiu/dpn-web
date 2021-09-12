@@ -18,6 +18,7 @@ type PublicFarmData = {
 const fetchFarm = async (farm: SerializedFarm): Promise<PublicFarmData> => {
   const { pid, lpAddresses, token, quoteToken } = farm
   const lpAddress = getAddress(lpAddresses)
+  console.info(`${pid} ${token.symbol} lpAddress: ${lpAddress}`)
   const calls = [
     // Balance of token in the LP contract
     {
@@ -57,7 +58,17 @@ const fetchFarm = async (farm: SerializedFarm): Promise<PublicFarmData> => {
   const [tokenBalanceLP, quoteTokenBalanceLP, lpTokenBalanceMC, lpTotalSupply, tokenDecimals, quoteTokenDecimals] =
     await multicall(erc20, calls)
 
-  console.info(`>>> ${pid} [tokenBalanceLP, quoteTokenBalanceLP, lpTokenBalanceMC, lpTotalSupply, tokenDecimals, quoteTokenDecimals]`, [tokenBalanceLP, quoteTokenBalanceLP, lpTokenBalanceMC, lpTotalSupply, tokenDecimals, quoteTokenDecimals])
+  // console.info(
+  //   `>>> ${pid} [tokenBalanceLP, quoteTokenBalanceLP, lpTokenBalanceMC, lpTotalSupply, tokenDecimals, quoteTokenDecimals]`,
+  //   [
+  //     tokenBalanceLP.toJSON(),
+  //     quoteTokenBalanceLP.toJSON(),
+  //     lpTokenBalanceMC.toJSON(),
+  //     lpTotalSupply.toJSON(),
+  //     tokenDecimals,
+  //     quoteTokenDecimals,
+  //   ],
+  // )
   // Ratio in % of LP tokens that are staked in the MC, vs the total number in circulation
   const lpTokenRatio = new BigNumber(lpTokenBalanceMC).div(new BigNumber(lpTotalSupply))
 
@@ -87,11 +98,10 @@ const fetchFarm = async (farm: SerializedFarm): Promise<PublicFarmData> => {
         ])
       : [null, null]
 
-  
   const allocPoint = info ? new BigNumber(info.allocPoint?._hex) : BIG_ZERO
   const poolWeight = totalAllocPoint ? allocPoint.div(new BigNumber(totalAllocPoint)) : BIG_ZERO
 
-  const r =  {
+  const r = {
     tokenAmountTotal: tokenAmountTotal.toJSON(),
     lpTotalSupply: new BigNumber(lpTotalSupply).toJSON(),
     lpTotalInQuoteToken: lpTotalInQuoteToken.toJSON(),
@@ -100,7 +110,7 @@ const fetchFarm = async (farm: SerializedFarm): Promise<PublicFarmData> => {
     multiplier: `${allocPoint.div(100).toString()}X`,
   }
 
-  console.info(`>>> ${pid} fetchFarm: r: `, r)
+  // console.info(`>>> ${pid} fetchFarm: r: `, r)
   return r
 }
 

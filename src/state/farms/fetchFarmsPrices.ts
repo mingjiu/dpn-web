@@ -14,20 +14,35 @@ const getFarmFromTokenSymbol = (
   return filteredFarm
 }
 
+
 const getFarmBaseTokenPrice = (
   farm: SerializedFarm,
   quoteTokenFarm: SerializedFarm,
-  bnbPriceBusd: BigNumber,
+  nativeTokenPriceUSD: BigNumber,
 ): BigNumber => {
   const hasTokenPriceVsQuote = Boolean(farm.tokenPriceVsQuote)
+  console.info(`getFarmBaseTokenPrice fram:`, farm)
 
-  return BIG_ONE
+  if (farm.quoteToken.symbol === tokens.usdt.symbol) {
+    return BIG_ONE
+  }
+
+  if (farm.quoteToken.symbol === tokens.trx.symbol) {
+    return nativeTokenPriceUSD
+  }
+
+  if (farm.quoteToken.symbol === tokens.dpn.symbol) {
+    // TODO: change to the swap price 
+    return new BigNumber('0.2')
+  }
+
+  // return BIG_ONE
   if (farm.quoteToken.symbol === tokens.usdt.symbol) {
     return hasTokenPriceVsQuote ? new BigNumber(farm.tokenPriceVsQuote) : BIG_ZERO
   }
 
   if (farm.quoteToken.symbol === tokens.trx.symbol) {
-    return hasTokenPriceVsQuote ? bnbPriceBusd.times(farm.tokenPriceVsQuote) : BIG_ZERO
+    return hasTokenPriceVsQuote ? nativeTokenPriceUSD.times(farm.tokenPriceVsQuote) : BIG_ZERO
   }
 
   // We can only calculate profits without a quoteTokenFarm for USDT/BNB farms
@@ -41,7 +56,7 @@ const getFarmBaseTokenPrice = (
   // i.e. for farm PNT - pBTC we use the pBTC farm's quote token - BNB, (pBTC - BNB)
   // from the BNB - pBTC price, we can calculate the PNT - USDT price
   if (quoteTokenFarm.quoteToken.symbol === tokens.trx.symbol) {
-    const quoteTokenInBusd = bnbPriceBusd.times(quoteTokenFarm.tokenPriceVsQuote)
+    const quoteTokenInBusd = nativeTokenPriceUSD.times(quoteTokenFarm.tokenPriceVsQuote)
     return hasTokenPriceVsQuote && quoteTokenInBusd
       ? new BigNumber(farm.tokenPriceVsQuote).times(quoteTokenInBusd)
       : BIG_ZERO
@@ -61,15 +76,19 @@ const getFarmBaseTokenPrice = (
 const getFarmQuoteTokenPrice = (
   farm: SerializedFarm,
   quoteTokenFarm: SerializedFarm,
-  bnbPriceBusd: BigNumber,
+  nativeTokenPriceUSD: BigNumber,
 ): BigNumber => {
-  return BIG_ONE
-  if (farm.quoteToken.symbol === 'USDT') {
+  if (farm.quoteToken.symbol === tokens.usdt.symbol) {
     return BIG_ONE
   }
 
-  if (farm.quoteToken.symbol === 'TRX') {
-    return bnbPriceBusd
+  if (farm.quoteToken.symbol === tokens.trx.symbol) {
+    return nativeTokenPriceUSD
+  }
+
+  if (farm.quoteToken.symbol === tokens.dpn.symbol) {
+    // TODO: change to the swap price 
+    return new BigNumber('0.2')
   }
 
   if (!quoteTokenFarm) {
@@ -77,7 +96,7 @@ const getFarmQuoteTokenPrice = (
   }
 
   if (quoteTokenFarm.quoteToken.symbol === 'TRX') {
-    return quoteTokenFarm.tokenPriceVsQuote ? bnbPriceBusd.times(quoteTokenFarm.tokenPriceVsQuote) : BIG_ZERO
+    return quoteTokenFarm.tokenPriceVsQuote ? nativeTokenPriceUSD.times(quoteTokenFarm.tokenPriceVsQuote) : BIG_ZERO
   }
 
   if (quoteTokenFarm.quoteToken.symbol === 'USDT') {
@@ -88,13 +107,15 @@ const getFarmQuoteTokenPrice = (
 }
 
 const fetchFarmsPrices = async (farms: SerializedFarm[]) => {
-  const bnbBusdFarm = farms.find((farm) => farm.pid === 252)
-  const bnbPriceBusd = bnbBusdFarm.tokenPriceVsQuote ? BIG_ONE.div(bnbBusdFarm.tokenPriceVsQuote) : BIG_ZERO
+  const bnbBusdFarm = farms.find((farm) => farm.pid === 2)
+  const nativeTokenPriceUSD = bnbBusdFarm.tokenPriceVsQuote ? BIG_ONE.div(bnbBusdFarm.tokenPriceVsQuote) : BIG_ZERO
 
+  // console.info(`fetchFarmsPrice nativeTokenPriceUSD>>>> `, nativeTokenPriceUSD)
+  
   const farmsWithPrices = farms.map((farm) => {
     const quoteTokenFarm = getFarmFromTokenSymbol(farms, farm.quoteToken.symbol)
-    const tokenPriceUSD = getFarmBaseTokenPrice(farm, quoteTokenFarm, bnbPriceBusd)
-    const quoteTokenPriceUSD = getFarmQuoteTokenPrice(farm, quoteTokenFarm, bnbPriceBusd)
+    const tokenPriceUSD = getFarmBaseTokenPrice(farm, quoteTokenFarm, nativeTokenPriceUSD)
+    const quoteTokenPriceUSD = getFarmQuoteTokenPrice(farm, quoteTokenFarm, nativeTokenPriceUSD)
 
     return {
       ...farm,
@@ -103,6 +124,7 @@ const fetchFarmsPrices = async (farms: SerializedFarm[]) => {
     }
   })
 
+  // console.info(`==== farmsWithPrices: `, farmsWithPrices)
   return farmsWithPrices
 }
 

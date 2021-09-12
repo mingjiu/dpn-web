@@ -120,7 +120,7 @@ const DepositModal: React.FC<DepositModalProps> = ({
         addLiquidityUrl={addLiquidityUrl}
         inputTitle={t('Stake')}
       />
-      <Flex mt="24px" alignItems="center" justifyContent="space-between">
+      {/* <Flex mt="24px" alignItems="center" justifyContent="space-between">
         <Text mr="8px" color="textSubtle">
           {t('Annual ROI at current rates')}:
         </Text>
@@ -130,7 +130,7 @@ const DepositModal: React.FC<DepositModalProps> = ({
             <CalculateIcon color="textSubtle" width="18px" />
           </IconButton>
         </AnnualRoiContainer>
-      </Flex>
+      </Flex> */}
       <ModalActions>
         <Button variant="secondary" onClick={onDismiss} width="100%" disabled={pendingTx}>
           {t('Cancel')}

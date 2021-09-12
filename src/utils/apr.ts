@@ -16,7 +16,7 @@ export const getPoolApr = (
   totalStaked: number,
   tokenPerBlock: number,
 ): number => {
-  console.info(`pool stakingTokenPrice: `, stakingTokenPrice)
+  // console.info(`pool stakingTokenPrice: `, stakingTokenPrice)
   const totalRewardPricePerYear = new BigNumber(rewardTokenPrice).times(tokenPerBlock).times(BLOCKS_PER_YEAR)
   const totalStakingTokenInPool = new BigNumber(stakingTokenPrice).times(totalStaked)
   const apr = totalRewardPricePerYear.div(totalStakingTokenInPool).times(100)
@@ -37,9 +37,10 @@ export const getFarmApr = (
   farmAddress: string,
 ): { cakeRewardsApr: number; lpRewardsApr: number } => {
   // return { cakeRewardsApr: cakeRewardsAprAsNumber, lpRewardsApr }
-  console.info(`farm weight: `, poolWeight)
-  console.info(`cakePriceUsd: `, cakePriceUsd)
-  console.info(`poolLiquidityUsd: `, poolLiquidityUsd)
+  // console.info(`farm weight: `, poolWeight.toJSON())
+  // console.info(`cakePriceUsd: `, cakePriceUsd.toJSON())
+  // console.info(`poolLiquidityUsd: `, poolLiquidityUsd.toJSON())
+  // return { cakeRewardsApr: 1190, lpRewardsApr:0 }
 
   let _cakePriceUsd = cakePriceUsd
   if (!cakePriceUsd || cakePriceUsd.isNaN()) {
@@ -47,8 +48,8 @@ export const getFarmApr = (
   }
 
   let _poolLiquidityUsd = poolLiquidityUsd
-  if (!poolLiquidityUsd || poolLiquidityUsd.isNaN()) {
-    _poolLiquidityUsd = new BigNumber(1)
+  if (!poolLiquidityUsd || poolLiquidityUsd.isNaN() || poolLiquidityUsd.isZero()) {
+    _poolLiquidityUsd = new BigNumber('1000000')
   }
 
   const yearlyCakeRewardAllocation = REWARD_PER_YEAR.times(poolWeight)

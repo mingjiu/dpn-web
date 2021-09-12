@@ -34,17 +34,18 @@ export const nonArchivedFarms = farmsConfig.filter(({ pid }) => !isArchivedPid(p
 export const fetchFarmsPublicDataAsync = createAsyncThunk<SerializedFarm[], number[]>(
   'farms/fetchFarmsPublicDataAsync',
   async (pids) => {
-    console.info(`fetchFarmsPublicDataAsync pids: `, pids)
+    // console.info(`fetchFarmsPublicDataAsync pids: `, pids)
     const farmsToFetch = farmsConfig.filter((farmConfig) => pids.includes(farmConfig.pid))
 
     // Add price helper farms
     const farmsWithPriceHelpers = farmsToFetch.concat(priceHelperLpsConfig)
 
 
-    console.info(`farmsWithPriceHelpers: `, farmsWithPriceHelpers)
+    // console.info(`farmsWithPriceHelpers: `, farmsWithPriceHelpers)
     const farms = await fetchFarms(farmsWithPriceHelpers)
-    console.info(`fetchFarms: `, farms)
+    // console.info(`fetchFarms: `, farms)
     const farmsWithPrices = await fetchFarmsPrices(farms)
+    // console.info(`farmsWithPrices: `, farmsWithPrices)
 
     // Filter out price helper LP config farms
     const farmsWithoutHelperLps = farmsWithPrices.filter((farm: SerializedFarm) => {

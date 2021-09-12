@@ -12,7 +12,7 @@ import getLiquidityUrlPathParts from 'utils/getLiquidityUrlPathParts'
 import DetailsSection from './DetailsSection'
 import CardHeading from './CardHeading'
 import CardActionsContainer from './CardActionsContainer'
-import ApyButton from './ApyButton'
+import ApyLabel from './ApyLabel'
 
 export interface FarmWithStakedValue extends DeserializedFarm {
   apr?: number
@@ -80,8 +80,8 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, displayApr, removed, cakePric
             <Text>{t('APR')}:</Text>
             <Text bold style={{ display: 'flex', alignItems: 'center' }}>
               {farm.apr ? (
-                <ApyButton
-                  variant="text-and-button"
+                <ApyLabel
+                  variant="text"
                   pid={farm.pid}
                   lpSymbol={farm.lpSymbol}
                   multiplier={farm.multiplier}
@@ -110,7 +110,7 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, displayApr, removed, cakePric
         />
       </FarmCardInnerContainer>
 
-      <ExpandingWrapper>
+      {/* <ExpandingWrapper>
         <ExpandableSectionButton
           onClick={() => setShowExpandableSection(!showExpandableSection)}
           expanded={showExpandableSection}
@@ -125,7 +125,7 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, displayApr, removed, cakePric
             addLiquidityUrl={addLiquidityUrl}
           />
         )}
-      </ExpandingWrapper>
+      </ExpandingWrapper> */}
     </StyledCard>
   )
 }
