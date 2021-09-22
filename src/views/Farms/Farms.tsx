@@ -28,6 +28,7 @@ import Table from './components/FarmTable/FarmTable'
 import { RowProps } from './components/FarmTable/Row'
 // import ToggleView from './components/ToggleView/ToggleView'
 import { DesktopColumnSchema, ViewMode } from './components/types'
+import imgBanner from './dpn.png'
 
 const ControlContainer = styled.div`
   display: flex;
@@ -385,17 +386,7 @@ const Farms: React.FC = () => {
             <ArrowForwardIcon color="primary" />
           </Button>
         </NavLink> */}
-        <div
-          style={{
-            textAlign: 'center',
-            fontSize: '48px',
-            height: '240px',
-            lineHeight: '240px',
-            padding: 0,
-          }}
-        >
-          banner placeholder
-        </div>
+        <img src={imgBanner} alt="farm banner" />
       </PageHeader>
       <Page>
         <ControlContainer>
